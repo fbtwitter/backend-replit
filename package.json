@@ -2,6 +2,7 @@
 	"name": "backend-repolit",
 	"author": "Reza Fauzi Augusdi",
 	"description": "A project for learning backend development with Node.js and Express, hosted on Replit.",
+	"keywords": ["freecodecamp", "backend", "learning", "replit"],
 	"dependencies": {
 		"express": "^4.14.0"
 	},
