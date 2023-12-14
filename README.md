@@ -21,3 +21,10 @@ the app.get("/", ...) route handler.
 The method needs an absolute file path, so we recommend to use node global variable __dirname to calculate path like 
 this: 
 ``absolutePath = __dirname + "/relativePath/file.ext"``
+
+## Serve static assets
+To serve static assets you need to use middleware **express.static(path)**, where the path is the absolute path of the 
+folder containing the assets
+
+A middleware needs to be mounted using the method **app.use(path, middlewareFunction)**. the first path argument is 
+optional. if you don't pass it, the middleware will be executed for all requests. 

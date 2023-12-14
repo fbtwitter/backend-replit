@@ -3,10 +3,11 @@ let app = express()
 
 console.log("Hello World")
 
-const absolutePath = __dirname + "/views/index.html"
-
 app.get("/", (req, res) => {
-  res.sendFile(absolutePath)
+  res.sendFile(__dirname + "/views/index.html")
 })
+
+// Add middleware to serve static assets
+app.use("/public", express.static(__dirname + "/public"))
 
 module.exports = app
