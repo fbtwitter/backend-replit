@@ -13,3 +13,11 @@ in express, routes takes a following structure: app.METHOD(PATH, HANDLER)
 ``function(req, res) {
   res.send('Response String');
   }``
+
+## Serve an HTML File
+To serve an html file you can respond to request with a file using the res.sendFile(path) method by put it inside 
+the app.get("/", ...) route handler.
+
+The method needs an absolute file path, so we recommend to use node global variable __dirname to calculate path like 
+this: 
+``absolutePath = __dirname + "/relativePath/file.ext"``
