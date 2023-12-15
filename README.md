@@ -141,3 +141,34 @@ req.query: {userId: '546', bookId: '6754'}
 ```
 
 using "req.query"
+
+you can also chaining route by using app.route method, and it become like this 
+
+```javascript
+app.route(PATH).get(HANDLER).post(HANDLER).put(HANDLER);
+etc..
+```
+
+## Use body-parser to parse POST request
+
+besides GET, there is POST. POST is the default method used to send client data with HTML forms. Also in conventions,
+POST is used to send data to create new items in the database (a new user, or a new blog post)
+
+in these kind of requests, the data doesn't appear in the URL, it is hidden in the request body. body is part of the 
+HTTP request that also called the "payload". 
+
+even though the data is not visible in the URL, this doesn't mean that it is private.
+
+The raw content of an HTTP POST request:
+```javascript
+POST /path/subpath HTTP/1.0
+From: john@example.com
+User-Agent: someBrowser/1.0
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 20
+
+name=John+Doe&age=25
+```
+
+To parse the data coming from POST requests, you must use the "body-parser" package. This package allows you to use a 
+series of middleware, which can decode data in different formats.

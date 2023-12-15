@@ -1,15 +1,20 @@
 require('dotenv').config()
-let express = require('express')
-let app = express()
+const bodyParser = require('body-parser')
+const express = require('express')
+const app = express()
 
 console.log('Hello World')
 
-// Add middleware to serve static assets
+// Add middleware
+// the middleware to add root logger
 app.use((req, res, next) => {
   console.log(req.method + ' ' + req.path + ' - ' + req.ip)
   next()
 })
+// the middleware to serve static assets
 app.use('/public', express.static(__dirname + '/public'))
+// the middleware to decode data
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
