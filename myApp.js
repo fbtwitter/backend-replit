@@ -29,8 +29,7 @@ let arrayOfPeople = [
 ]
 
 const createManyPeople = (arrayOfPeople, done) => {
-  let newPerson = new Person(arrayOfPeople)
-  newPerson.create(function (err, data) {
+  Person.create(arrayOfPeople, function (err, data) {
     if (err) return console.error(err)
     done(null, data)
   })
