@@ -42,7 +42,7 @@ app.route('/name')
   })
   .post((req, res) => {
     console.log(req.body) // Assuming you're expecting JSON in the request body
-    res.send()
+    res.send({name: req.body?.first + " " + req.body?.last})
   })
 
 module.exports = app

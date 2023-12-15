@@ -172,3 +172,32 @@ name=John+Doe&age=25
 
 To parse the data coming from POST requests, you must use the "body-parser" package. This package allows you to use a 
 series of middleware, which can decode data in different formats.
+
+The middleware to handle URL encoded data is returned by
+```javascript
+bodyParser.urlencoded({extended: false})
+```
+
+Note: extended is a configuration option that tells body-parser which parsing needs to be used. When extended=false it uses the classic encoding querystring library. When extended=true it uses qs library for parsing.
+
+When using "extended=false", values can be only strings or arrays. The object returned when using querystring does not prototypically inherit from the default JavaScript Object, which means functions like hasOwnProperty, toString will not be available. The extended version allows more data flexibility, but it is outmatched by JSON.
+
+## Get Data from POST Requests
+If the body-parser is configured correctly, you should find the parameters in the object req.body. Have a look at 
+the usual library example :
+
+```javascript
+route: POST '/library'
+urlencoded_body: userId=546&bookId=6754
+req.body: {userId: '546', bookId: '6754'}
+```
+
+also, there are several other HTTP methods. The conventional mapping is:
+
+- POST (sometimes PUT) - Create a new resource using the information sent with the request.
+- GET - Read an existing resource without modifying it.
+- PUT or PATCH (sometimes POST) - Update a resource using the data sent.
+- DELETE - Delete a resource.
+- etc, couple of other methods which are used to negotiate a connection with the server.
+
+Except GET, all other methods listed above can have a payload (i.e. the data into the request body)
