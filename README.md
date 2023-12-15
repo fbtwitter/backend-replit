@@ -119,4 +119,25 @@ actual_request_URL: '/user/546/book/6754'
 req.params: {userId: '546', bookId: '6754'}
 ```
 
+using "req.params"
 
+## Get query parameter input from the client
+
+Query parameter / query string is encoded the data at after the routh path. 
+
+- The query string is delimited by a 
+question mark (?). 
+- includes field=value. 
+- Each couple separated by an ampersand (&).
+
+in query string, some characters like the percent (%), cannot be in URLs and have to be encoded in a different 
+format before you can pass them.
+
+example: 
+```javascript
+route_path: '/library'
+actual_request_URL: '/library?userId=546&bookId=6754'
+req.query: {userId: '546', bookId: '6754'}
+```
+
+using "req.query"
