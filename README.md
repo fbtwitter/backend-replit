@@ -3,6 +3,15 @@
 This is the boilerplate code for the Basic Node and Express Challenges. Instructions for working on these challenges
 start at https://www.freecodecamp.org/learn/apis-and-microservices/basic-node-and-express/
 
+## Intro
+
+Node.js is a JavaScript runtime tailored for server-side application development, offering crucial modules like HTTP for server operations and File System for effective file handling.
+
+In the realm of application enhancement, npm packages, comprised of smaller modules, empower developers to efficiently augment the functionality of their projects.
+
+Enter Express, a lightweight web application framework and a standout npm package. Express seamlessly integrates into Node.js, streamlining server creation and simplifying routing tasks. This includes directing users to specific endpoints like /blog with ease, contributing to a more efficient and cohesive development experience.
+
+
 ## Start a working express server
 
 in express, routes takes a following structure: app.METHOD(PATH, HANDLER)
