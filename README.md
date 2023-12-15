@@ -88,5 +88,23 @@ function(req, res, next) {
   console.log("I'm a middleware...");
   next();
 }
+```
 
+Note: Express evaluates functions in the order they appear in the code. This is true for middleware too. If you want it to work for all the routes, it should be mounted before them.
 
+## Chain middleware to create a time server
+
+Middleware can be mounted at a specific route using app.METHOD(path, middlewareFunction), and also it can be chained 
+withing a route definition like this:
+
+```javascript
+app.get('/user', function(req, res, next) {
+  req.user = getTheUserSync();  // Hypothetical synchronous operation
+  next();
+}, function(req, res) {
+  res.send(req.user);
+});
+```
+
+This approach can also be used to perform some validation on the data, block the execution of the current chain and 
+pass control to function specifically to handle errors.
