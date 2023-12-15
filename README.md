@@ -108,3 +108,15 @@ app.get('/user', function(req, res, next) {
 
 This approach can also be used to perform some validation on the data, block the execution of the current chain and 
 pass control to function specifically to handle errors.
+
+## Get Route Parameter Input from the Client
+
+you can capture values by using req.params object with the results like this;
+
+```javascript
+route_path: '/user/:userId/book/:bookId'
+actual_request_URL: '/user/546/book/6754'
+req.params: {userId: '546', bookId: '6754'}
+```
+
+
