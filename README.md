@@ -28,3 +28,21 @@ folder containing the assets
 
 A middleware needs to be mounted using the method **app.use(path, middlewareFunction)**. the first path argument is 
 optional. if you don't pass it, the middleware will be executed for all requests. 
+
+## Serve JSON on a specific route
+
+- HTML server serves HTML
+- API serves data
+- REST (REpresentational State Transfer) API allows data exchange in a simple way, without the need to know where 
+  the resources is (the URL), and the action it wants to perform on it (the verb)
+- the preferred data format for moving information around the web is **JSON** (the default)
+
+GET : used to fetch some information, without modifying anything.
+
+this is as simple with the usual, and inside the route handler use the method **res.json()**. Behind the scenes, it 
+converts a valid JavaScript object into a string.
+
+also sets the appropriate headers to tell your browser that you are serving JSON, and sends the data back. 
+
+A valid object has the usual structure **({key: data}**. 
+
