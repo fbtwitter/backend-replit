@@ -14,7 +14,7 @@ in express, routes takes a following structure: app.METHOD(PATH, HANDLER)
   <br />
 
 ```javascript
-function (req, res) {
+function expressServer(req, res) {
   res.send('Response String');
 }
   ```
@@ -84,7 +84,7 @@ They can also be end the cycle by sending a response (res) when some condition m
 response when they are done, they start to execute the third function **next** (next())).
 
 ```javascript
-function(req, res, next) {
+function expressServer(req, res, next) {
   console.log("I'm a middleware...");
   next();
 }
