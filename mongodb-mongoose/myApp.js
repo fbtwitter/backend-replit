@@ -41,9 +41,8 @@ let Person
 
 Person = mongoose.model('Person', personSchema)
 
-let newPerson = new Person({ name: 'John', age: 25, favoriteFoods: ['Avocado Fruit'] })
-
 const createAndSavePerson = (done) => {
+  let newPerson = new Person({ name: 'John', age: 25, favoriteFoods: ['Avocado Fruit'] })
   // Save the document to db
   newPerson.save(function (err, data) {
     if (err) return console.error(err)
@@ -58,7 +57,7 @@ let arrayOfPeople = [
 ]
 
 const createManyPeople = (arrayOfPeople, done) => {
-  newPerson.create(arrayOfPeople, function (err, data) {
+  Person.create(arrayOfPeople, function (err, data) {
     if (err) return console.error(err)
     done(null, data)
   })
