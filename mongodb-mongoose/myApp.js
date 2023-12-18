@@ -15,21 +15,21 @@ db.on('connected', () => {
 
 // Event handling for connection errors
 db.on('error', (err) => {
-  console.error(`MongoDB connection error: ${err}`);
-});
+  console.error(`MongoDB connection error: ${err}`)
+})
 
 // Event handling for disconnection
 db.on('disconnected', () => {
-  console.log('Disconnected from MongoDB');
-});
+  console.log('Disconnected from MongoDB')
+})
 
 // Close the Mongoose connection on Node.js process termination
 process.on('SIGINT', () => {
   db.close(() => {
-    console.log('MongoDB connection closed through app termination');
-    process.exit(0);
-  });
-});
+    console.log('MongoDB connection closed through app termination')
+    process.exit(0)
+  })
+})
 
 const personSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -64,7 +64,10 @@ const createManyPeople = (arrayOfPeople, done) => {
 }
 
 const findPeopleByName = (personName, done) => {
-  done(null /*, data*/)
+  Person.find({ name: personName }, function (err, data) {
+    if (err) return console.error(err)
+    done(null, data)
+  })
 }
 
 const findOneByFood = (food, done) => {

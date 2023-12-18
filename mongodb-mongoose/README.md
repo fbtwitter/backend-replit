@@ -44,3 +44,15 @@ person.save(function(err, data) {
 ```
 
 ## Create Many Records
+
+Sometimes you need to create many instance of your models e.g. when seeding a database with initial data.
+
+To create many records, you can use
+```javascript 
+Model.create()
+```
+methods that takes an array of objects like [{name: 'John', ...}, 
+{...}, ...] as the first argument, and saves them all in the db.
+
+## Use a model.find() to search your database
+
