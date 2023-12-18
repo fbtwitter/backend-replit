@@ -1,7 +1,35 @@
 require('dotenv').config()
 const mongoose = require('mongoose')
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+
+const db = mongoose.connection
+
+// Event handling for successful connection
+db.on('connected', () => {
+  console.log('Connected to MongoDB')
+})
+
+// Event handling for connection errors
+db.on('error', (err) => {
+  console.error(`MongoDB connection error: ${err}`);
+});
+
+// Event handling for disconnection
+db.on('disconnected', () => {
+  console.log('Disconnected from MongoDB');
+});
+
+// Close the Mongoose connection on Node.js process termination
+process.on('SIGINT', () => {
+  db.close(() => {
+    console.log('MongoDB connection closed through app termination');
+    process.exit(0);
+  });
+});
 
 const personSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -24,8 +52,8 @@ const createAndSavePerson = (done) => {
 
 let arrayOfPeople = [
   { name: 'Doe', age: 24, favoriteFoods: ['Banana Fruit'] },
-  { name: 'Reza', age: 25, favoriteFoods: ['Noodle', 'Dragon Fruit', 'Banana Fruit'] },
-  { name: 'Iqlima', age: 24, favoriteFoods: ['Squid', 'Octopus', 'All based vegetables'] },
+  { name: 'Yay', age: 25, favoriteFoods: ['Noodle', 'Dragon Fruit', 'Banana Fruit'] },
+  { name: 'Nay', age: 24, favoriteFoods: ['Squid', 'Octopus', 'All based vegetables'] },
 ]
 
 const createManyPeople = (arrayOfPeople, done) => {

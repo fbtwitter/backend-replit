@@ -16,4 +16,31 @@ mongoose.connect(<Your URI>, { useNewUrlParser: true, useUnifiedTopology: true }
 
 ## Create a model
 
-CRUD - CREATE
+To create a model in mongodb using mongoose you first need to build a Schema. Each schema maps to a MongoDB 
+collection that defines the shape of the document.
+
+Schemas are building block for Models that can be nested to create complex models. A model allows you to create 
+instance of your objects called documents.
+
+Example:
+```javascript
+const personSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  age: Number,
+  favoriteFoods: [String]
+})
+```
+
+## Create and Save a model
+
+To save or record a model, create a "document" instance using the model constructor and then pass the required value 
+in each fields. After that, call the method "document".save()
+
+like this:
+```javascript
+person.save(function(err, data) {
+  //   ...do your stuff here...
+});
+```
+
+## Create Many Records
