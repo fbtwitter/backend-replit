@@ -1,0 +1,19 @@
+{
+	"name": "backend-repolit",
+	"author": "Reza Fauzi Augusdi",
+	"description": "A project for learning backend development with Node.js and Express, hosted on Replit.",
+	"keywords": ["freecodecamp", "backend", "learning", "replit"],
+	"version": "0.0.1",
+	"license": "MIT",
+	"dependencies": {
+		"express": "^4.14.0"
+	},
+	"main": "server.js",
+	"scripts": {
+		"start": "node server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/freeCodeCamp/boilerplate-npm.git"
+	}
+}
