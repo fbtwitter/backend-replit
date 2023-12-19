@@ -88,12 +88,12 @@ const findEditThenSave = (personId, done) => {
   const foodToAdd = 'hamburger'
 
   Person.findById(personId, function (err, data) {
-    if(err) return console.log(err)
+    if(err) return console.error(err)
 
     data.favoriteFoods.push(foodToAdd)
 
     data.save((err, updatedData) => {
-      if(err) console.log(err)
+      if(err) return console.error(err)
       done(null, updatedData)
     })
   })
@@ -102,7 +102,11 @@ const findEditThenSave = (personId, done) => {
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20
 
-  done(null /*, data*/)
+  Person.findByIdAndUpdate(personName, (err, data) => {
+    if(err) return console.error(err)
+    data.age = 20
+    done(null, data)
+  }, {new: true})
 }
 
 const removeById = (personId, done) => {
