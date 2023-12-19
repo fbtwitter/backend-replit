@@ -71,7 +71,7 @@ const findPeopleByName = (personName, done) => {
 }
 
 const findOneByFood = (food, done) => {
-  Person.findOne({favoriteFoods: food}, function(err, data) {
+  Person.findOne({ favoriteFoods: food }, function (err, data) {
     if (err) return console.error(err)
     done(null, data)
   })
@@ -88,19 +88,19 @@ const findEditThenSave = (personId, done) => {
   const foodToAdd = 'hamburger'
 
   Person.findById(personId, function (err, data) {
-    if(err) return console.error(err)
+    if (err) return console.error(err)
 
     data.favoriteFoods.push(foodToAdd)
 
     data.save((err, updatedData) => {
-      if(err) return console.error(err)
+      if (err) return console.error(err)
       done(null, updatedData)
     })
   })
 }
 
 const findAndUpdate = (personName, done) => {
-  const ageToSet = 20;
+  const ageToSet = 20
 
   // findOneAndUpdate uses ( conditions , update , options , callback ) as arguments
 
@@ -109,14 +109,22 @@ const findAndUpdate = (personName, done) => {
     { age: ageToSet },
     { new: true },
     (err, data) => {
-      if (err) return console.error(err);
-      done(null, data);
+      if (err) return console.error(err)
+      done(null, data)
     },
-  );
-};
+  )
+}
 
 const removeById = (personId, done) => {
-  done(null /*, data*/)
+
+  Person.findByIdAndRemove(personId, (err, data) => {
+    if (err) return console.error(err)
+
+    data.save((err, updatedData) => {
+      if (err) return console.error(err)
+      done(null, updatedData)
+    })
+  })
 }
 
 const removeManyPeople = (done) => {
