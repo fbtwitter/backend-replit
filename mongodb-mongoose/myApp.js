@@ -119,11 +119,7 @@ const removeById = (personId, done) => {
 
   Person.findByIdAndRemove(personId, (err, data) => {
     if (err) return console.error(err)
-
-    data.save((err, updatedData) => {
-      if (err) return console.error(err)
-      done(null, updatedData)
-    })
+    done(null, data)
   })
 }
 
