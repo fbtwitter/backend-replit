@@ -56,3 +56,13 @@ methods that takes an array of objects like [{name: 'John', ...},
 
 ## Use a model.find() to search your database
 
+Model.find() uses to accepts a query document (a JSON object) as the **first argument**, then a 
+callback.
+It returns an array of matches. It supports an extremely wide range of search options. 
+
+Example: 
+```javascript
+model.find({name: personName}, (err, data) => {
+  ...
+})
+```
