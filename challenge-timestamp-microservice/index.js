@@ -24,21 +24,19 @@ app.get('/api/hello', function (req, res) {
 })
 
 app.get('/api/:date?', function (req, res) {
-  const date = req.params?.date
+  const dateParam = req.params?.date;
+  let currentDate = dateParam ? new Date(dateParam) : new Date();
 
-  try {
-    let currentDate = new Date(date)
-
-    if (isNaN(currentDate.getTime())) {
-      currentDate = new Date(+date)
-    }
-
-    res.json({ unix: currentDate.getTime(), utc: currentDate.toUTCString() })
-
-  } catch (err) {
-    console.log(err.message)
+  if (isNaN(currentDate.getTime())) {
+    // Attempt to parse as a Unix timestamp in milliseconds
+    currentDate = new Date(+dateParam);
   }
 
+  if (!isNaN(currentDate.getTime())) {
+    res.json({ unix: currentDate.getTime(), utc: currentDate.toUTCString() });
+  } else {
+    res.json({ error: "Invalid Date" });
+  }
 })
 
 const port = process.env.PORT || 3000
