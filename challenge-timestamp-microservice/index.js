@@ -25,7 +25,7 @@ app.get('/api/hello', function (req, res) {
 
 app.get('/api/:unix?', function (req, res) {
   const unix = +req.params?.unix;
-  let currentDate = new Date(unix)
+  let currentDate = new Date(unix).toUTCString()
 
   res.json({ unix: unix, utc: currentDate })
 })
