@@ -23,11 +23,22 @@ app.get('/api/hello', function (req, res) {
   res.json({ greeting: 'hello API New' })
 })
 
-app.get('/api/:unix?', function (req, res) {
-  const unix = +req.params?.unix;
-  let currentDate = new Date(unix).toUTCString()
+app.get('/api/:date?', function (req, res) {
+  const date = req.params?.date
 
-  res.json({ unix: unix, utc: currentDate })
+  try {
+    let currentDate = new Date(date)
+
+    if (isNaN(currentDate.getTime())) {
+      currentDate = new Date(+date)
+    }
+
+    res.json({ unix: currentDate.getTime(), utc: currentDate.toUTCString() })
+
+  } catch (err) {
+    console.log(err.message)
+  }
+
 })
 
 const port = process.env.PORT || 3000
